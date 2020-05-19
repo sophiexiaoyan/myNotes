@@ -1,0 +1,7 @@
+upload
+Dockerfile
+docker-compose.yaml
+setup-swarm.sh
+setup-compose.sh
+.env
+README.md

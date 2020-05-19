@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  app:
+    image: mynotes:v1
+    deploy:
+      replicas: 2
+    depends_on:
+      - mysql
+    ports:
+      - '8081:80'
+    volumes:
+      - app_data:/app/MyNotes/upload
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: myNotes
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - '9906:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: myNotes
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+
+volumes:
+  app_data:
+  db_data:
