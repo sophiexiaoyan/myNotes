@@ -13,10 +13,18 @@ docker-compose up -d
 
 # create table user, note and insert an user hxy into table user
 if [ $? -eq 0 ]; then
-  myapp=$(docker ps|grep mynotes_app|cut -d: -f3|awk '{print $2}')
-  mysql=$(docker ps|grep mynotes_mysql|cut -d: -f3|awk '{print $2}')
+  myapp=$(docker ps|grep mynotes_app|awk '{print $1}')
+  mysql=$(docker ps|grep mynotes_mysql|awk '{print $1}')
+
+  # wait until container mysql and app are ready
+  while [[ -z $mysql || -z $myapp ]]; do
+    sleep 5s
+    mysql=$(docker ps|grep mynotes_mysql|awk '{print $1}')
+    myapp=$(docker ps|grep mynotes_app|awk '{print $1}')
+  done
 
   if [[ -n $mysql ]]; then
+    echo "inside $myapp"
     result=$(docker exec $myapp php -f ./dev/seed.php)
     echo $result
     error="Connection refused"

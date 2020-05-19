@@ -2,7 +2,6 @@
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 require '../vendor/autoload.php';
-require './env.php';
 session_start();
 $app = new Slim\App();
 

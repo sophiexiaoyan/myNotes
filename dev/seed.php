@@ -1,5 +1,4 @@
 <?php
-require '../api/env.php';
 createUserTable();
 createNoteTable();
 seedUserTable();

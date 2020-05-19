@@ -30,12 +30,12 @@ mysql -u root -p
 create database myNotes
 ```
 
-This app uses these 4 variables to connect to Mysql, you can set them in .env file:
+This app uses these 4 variables to connect to Mysql, you need declare them:
 ```
-MYSQL_HOST=localhost
-MYSQL_DATABASE=myNotes
-MYSQL_USER=root
-MYSQL_PASSWORD=0000
+export MYSQL_HOST=localhost
+export MYSQL_DATABASE=myNotes
+export MYSQL_USER=root
+export MYSQL_PASSWORD=0000
 ```
 
 Initialize the database: create tables user and note, insert data into table user:
